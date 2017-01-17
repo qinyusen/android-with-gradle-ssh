@@ -64,13 +64,12 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository
 RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
 
 # Gradle
-#ENV GRADLE_VERSION 2.14.1
-#ENV GRADLE_SDK_URL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip
-#RUN curl -sSL "${GRADLE_SDK_URL}" -o gradle-${GRADLE_VERSION}-bin.zip  \
-#	&& unzip gradle-${GRADLE_VERSION}-bin.zip -d ${SDK_HOME}  \
-#	&& rm -rf gradle-${GRADLE_VERSION}-bin.zip
-#ENV GRADLE_HOME ${SDK_HOME}/gradle-${GRADLE_VERSION}
-#ENV PATH ${GRADLE_HOME}/bin:$PATH
+ENV GRADLE_VERSION 3.3
+RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip  \
+    && unzip gradle-${GRADLE_VERSION}-bin.zip -d ${ANDROID_HOME}   \
+    && rm -rf gradle-${GRADLE_VERSION}-bin.zip
+ENV GRADLE_HOME ${ANDROID_HOME}/gradle-${GRADLE_VERSION}
+ENV PATH ${GRADLE_HOME}/bin:$PATH
 
 EXPOSE 22
 
