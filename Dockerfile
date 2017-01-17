@@ -63,6 +63,8 @@ RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repositor
 RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
 
+RUN apt-get install -y unzip
+
 # Gradle
 ENV GRADLE_VERSION 3.3
 RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip  \
